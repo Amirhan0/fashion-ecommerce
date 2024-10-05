@@ -10,6 +10,40 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Usually-font';
+    src: url('./fonts/Usually-font.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Usually-font-Bold';
+    src: url('./fonts/Usually-font-Bold.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 * {
     font-family: 'Uindbase Font 1', sans-serif;
+}
+
+.glitch {
+    position: relative;
+    color: white;
+    text-shadow: 
+        -2px -2px 0px #A332CA,
+        -2px -2px 0px #A332CA,
+        -2px -2px 0px #A332CA,
+        -2px -2px 0px #A332CA;
+}
+
+.noselect {
+    user-select: none; 
+    pointer-events: none; 
+}
+
+.text-shadow {
+    text-shadow: 0 0 5px rgba(209, 193, 43, 0.8), 
+                 0 0 10px rgba(209, 193, 43, 0.6);
 }

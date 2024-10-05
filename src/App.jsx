@@ -1,12 +1,14 @@
 import './App.css'
-
+import ClothingForEveryone from './components/ClothingForEveryone '
+import HeaderForEveryone from './components/HeaderForEveryone'
 function App() {
-
-
   return (
     <>
-      <h1>Hello World</h1>
-    </>
+    <div className='bg-custom-gradient h-screen'>
+      <HeaderForEveryone></HeaderForEveryone>
+      <ClothingForEveryone></ClothingForEveryone>
+    </div>
+     </>
   )
 }
 
