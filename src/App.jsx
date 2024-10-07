@@ -1,15 +1,15 @@
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
-import ClothingForEveryone from './components/ClothingForEveryone '
-import ForThisSeason from './components/ForThisSeason'
 import HeaderForEveryone from './components/HeaderForEveryone'
-
+import AppRouter from './routes/router.jsx'
 function App() {
   return (
     <>
     <div className='bg-custom-gradient h-full px-[176px]'>
-      <HeaderForEveryone></HeaderForEveryone>
-      <ClothingForEveryone></ClothingForEveryone>
-      <ForThisSeason/>
+      <HeaderForEveryone />
+      <BrowserRouter>
+      <AppRouter/>
+      </BrowserRouter>
     </div>
      </>
   )
