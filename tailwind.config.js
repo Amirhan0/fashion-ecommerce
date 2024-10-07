@@ -16,8 +16,12 @@ export default {
       fontFamily: {
         'usually': ['Usually-font', 'sans-serif'],
         'uindbase': ['Uindbase Font 1', 'sans-serif'],
-        'uindbasebold': ['Usually-font-Bold', 'sans-serif']
+        'usuallybold': ['Usually-font-Bold', 'sans-serif']
+      },
+      textShadow: {
+        'custom': '10px 24px 10px #0000005E',
       }
+    
     },
   },
   plugins: [],
