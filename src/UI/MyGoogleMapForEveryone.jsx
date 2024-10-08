@@ -24,7 +24,7 @@ const MyGoogleMapForEveryone = () => {
       </div>
       <div className="flex ">
         <div className="flex">
-          <LoadScript googleMapsApiKey="AIzaSyDgj8uqShbnKquJhrBH2CUlqEQtJVv4-LQ">
+          <LoadScript googleMapsApiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}>
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
               center={center}
