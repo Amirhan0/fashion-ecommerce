@@ -44,15 +44,15 @@ const carts = [
         ))}
             <div className="flex flex-col mt-2">
                 <div>
-                <p className="text-[#3B4654] text-xl font-uindbase font-normal leading-4">
+                <p className="text-[#3B4654] text-xl font-uindbase font-normal leading-4 text-right">
   Сумма доставки будет рассчитана после ввода <br />
   данных о месте назначения - город, улица
 </p>
                 </div>
                 <div className="flex flex-col text-left mt-2">
-                    <span className="text-white font-uindbase font-normal text-2xl">Доставка:        500$</span>
+                    <span className="text-white font-uindbase font-normal text-2xl text-right">Доставка:        500$</span>
                     <br />
-                    <span className="text-white font-uindbase text-2xl">Итого:        500$</span>
+                    <span className="text-white font-uindbase text-2xl text-right">Итого:        500$</span>
                 </div>
             </div>
         </div>

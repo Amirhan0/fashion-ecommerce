@@ -122,32 +122,32 @@ const ClothingCartForm = () => {
             <div className="flex items-center space-x-4">
           <div className="flex items-center">
           <input
-          type="radio"
-          id="onlinePayment"
-          name="payment"
-          className="form-radio h-5 w-5"
-          style={{
-            background: '#10171F',
-            boxShadow: '0px 4px 4px 0px #00000040',
-            color: '#fff',
-          }}
-        />
+                type="checkbox"
+                id="
+                onlinePayment"
+                className="mt-4 px-4 py-3 w-full rounded-md"
+                style={{
+                  background: '#10171F',
+                  boxShadow: '0px 4px 4px 0px #00000040',
+                  color: '#fff',
+                }}
+              />
         <label htmlFor="onlinePayment" className="ml-2 text-white text-lg">
           Оплата онлайн
         </label>
       </div>
       <div className="flex items-center">
-        <input
-          type="radio"
-          id="cashPayment"
-          name="payment"
-          className="form-radio h-5 w-5"
-          style={{
-            background: '#10171F',
-            boxShadow: '0px 4px 4px 0px #00000040',
-            color: '#fff',
-          }}
-        />
+      <input
+                type="checkbox"
+                id="
+                cashPayment"
+                className="mt-4 px-4 py-3 w-full rounded-md"
+                style={{
+                  background: '#10171F',
+                  boxShadow: '0px 4px 4px 0px #00000040',
+                  color: '#fff',
+                }}
+              />
         <label htmlFor="cashPayment" className="ml-2 text-white text-lg">
           Оплата наличными
         </label>
