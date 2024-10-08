@@ -15,7 +15,7 @@ const ForThisSeason = () => {
           <img src="/forThisSeason.svg" alt="" className="h-[587px]" />
           <div className='absolute translate-y-72 translate-x-96 flex flex-col gap-4 items-center justify-center w-[320px] text-center'>
             <p className='text-white font-uindbase'>ТЕКСТ ОПИСАНИЯ КОНКРЕТНОЙ КОЛЛЕКЦИИ С ВОЗМОЖНЫМ ДОПОЛНЕНИЕМ УНИКАЛЬНОСТИ</p>
-            <ButtonForEveryone/>
+            <ButtonForEveryone buttonText='КАТАЛОГ'/>
           </div>
         </div>
 

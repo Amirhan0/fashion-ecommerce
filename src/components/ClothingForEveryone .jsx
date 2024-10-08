@@ -19,7 +19,7 @@ const ClothingForEveryone = () => {
                 
             </div>
             <div className='mr-20 mt-40'>
-            <ButtonForEveryone />
+            <ButtonForEveryone buttonText='КАТАЛОГ' />
             </div>
             
         </>

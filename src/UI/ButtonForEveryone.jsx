@@ -1,4 +1,4 @@
-const ButtonForEveryone = () => {
+const ButtonForEveryone = ({buttonText}) => {
     return (
         <div className="flex justify-end">
             <button
@@ -10,7 +10,7 @@ const ButtonForEveryone = () => {
                     className="mr-2 w-8 h-8 transition-all duration-300 ease-in-out group-hover:brightness-0" 
                 />
                 <span className="z-10 text-[#D1C12B] text-2xl text-shadow transition-colors duration-300 ease-in-out group-hover:text-black">
-                    КАТАЛОГ
+                    {buttonText}
                 </span>
             </button>
         </div>

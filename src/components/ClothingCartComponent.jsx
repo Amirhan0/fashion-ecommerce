@@ -21,7 +21,7 @@ const carts = [
 
     return (
         <>
-        <div className="flex flex-col h-full mt-9">
+        <div className="flex flex-col h-full mt-9 mr-10">
         <h1 className="leading-none text-9xl noselect text-[#1F252D] font-usuallybold opacity-50 text-left">
             Корзина
         </h1>
