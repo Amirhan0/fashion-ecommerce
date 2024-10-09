@@ -1,7 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 export default function RegistrPage() {
     const [step, setStep] = useState(1)
+    const [formData, setFormData] = useState({
+      nameUser: '',
+      phoneUser: '',
+      emailUser: '',
+      passwordUser: '',
+      confirmedPassword: ''
+    })
     const navigate = useNavigate()
 
     function navigation(link) {
@@ -14,6 +22,39 @@ export default function RegistrPage() {
 
     function handlePrevStep() {
         setStep(step - 1)
+    }
+
+
+    function handleChange(e) {
+      const {name, value} = e.target
+      setFormData({
+        ...formData,
+        [name]: value
+      })
+    }
+
+
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+
+      if (formData.passwordUser != formData.confirmedPassword) {
+        alert('Пароли не совпадают')
+        return
+      }
+
+      try {
+        const response = await axios.post('http://localhost:4000/api/registration', {
+          nameUser: formData.nameUser,
+          phoneUser: formData.phoneUser,
+          emailUser: formData.emailUser,
+          passwordUser: formData.passwordUser
+        })
+
+        console.log(response.data)
+        navigate('/login')
+      } catch (error) {
+        console.log(error)
+      }
     }
     return (
         <>
@@ -54,6 +95,9 @@ export default function RegistrPage() {
           <input
             type="text"
             placeholder="Имя пользователя"
+            name="nameUser"
+            value={formData.nameUser}
+            onChange={handleChange}
             className="bg-transparent outline-none border-[#1d2938] border-2 rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[#ffffff] w-full font-arial"
           />
         </div>
@@ -61,6 +105,9 @@ export default function RegistrPage() {
           <input
             type="text"
             placeholder="Телефон"
+            name="phoneUser"
+            value={formData.phoneUser}
+            onChange={handleChange}
             className="bg-transparent outline-none border-[#1d2938] border-2 rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[#ffffff] w-full font-arial"
           />
         </div>
@@ -68,6 +115,9 @@ export default function RegistrPage() {
           <input
             type="email"
             placeholder="Email"
+            name="emailUser"
+            value={formData.emailUser}
+            onChange={handleChange}
             className="bg-transparent outline-none border-[#1d2938] border-2 rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[#ffffff] w-full font-arial"
           />
         </div>
@@ -83,6 +133,9 @@ export default function RegistrPage() {
           <input
             type="password"
             placeholder="Пароль"
+            name="passwordUser"
+            value={formData.passwordUser}
+            onChange={handleChange}
             className="bg-transparent outline-none border-[#1d2938] border-2 rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[#ffffff] w-full font-arial"
           />
         </div>
@@ -90,10 +143,13 @@ export default function RegistrPage() {
           <input
             type="password"
             placeholder="Подтвердите пароль"
+            name="confirmedPassword"
+            value={formData.confirmedPassword}
+            onChange={handleChange}
             className="bg-transparent outline-none border-[#1d2938] border-2 rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[#ffffff] w-full font-arial"
           />
         </div>
-        <button className="bg-[#2d333b] border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition">
+        <button onClick={handleSubmit} type="submit" className="bg-[#2d333b] border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition">
           Зарегистрироваться
         </button>
         <button onClick={handlePrevStep} className="bg-[#2d333b] border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition">

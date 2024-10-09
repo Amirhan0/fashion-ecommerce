@@ -10,7 +10,7 @@ const newUsers = new Schema({
         type: String,
         required: true,
         validate: {
-            validator: (v) => /^(\+7|8|7)\d{9}$/.test(v), 
+            validator: (v) => /^(?:\+7|8|7)?\d{10}$/.test(v), 
             message: (props) => `${props.value} - не является действительным номером телефона!`,
         },
     },
