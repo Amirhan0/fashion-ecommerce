@@ -31,4 +31,6 @@ const newUsers = new Schema({
     imageUser: String,
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', newUsers);
+const Users = mongoose.model('User', newUsers);
+
+module.exports = Users

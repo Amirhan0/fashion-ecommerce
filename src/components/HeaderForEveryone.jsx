@@ -36,7 +36,7 @@ const Header = () => {
           </div>
           <div className="navButton">
             <span
-              onClick={() => navigate("/contacts")}
+              onClick={() => navigate("/documentation")}
               className="hover:text-[#D1C12B] cursor-pointer"
             >
               КОНТАКТЫ
@@ -53,9 +53,6 @@ const Header = () => {
         </div>
       </div>
       <div className="flex gap-10 items-center">
-        <div>
-          <img src="/telegram.svg" alt="Telegram" className="cursor-pointer" />
-        </div>
         <LogRegBtn/>
       </div>
     </div>

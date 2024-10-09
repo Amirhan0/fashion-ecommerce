@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 export default function LoginPage() {
+  const navigate = useNavigate()
+
+  function navigation(link) {
+    navigate(link)
+  }
     return (
       <>
         <div className="flex flex-col items-center relative translate-y-[-80px] ">
@@ -58,7 +65,7 @@ export default function LoginPage() {
          
           <div className="text-center">
             <p className="text-gray-400 text-sm font-arial text-[18px]">
-              <span className="underline font-arial cursor-pointer">Зарегестрируйтесь</span>, если у вас нет аккаунта
+              <span className="underline font-arial cursor-pointer" onClick={() => navigation('/registration')}>Зарегистрируйтесь</span>, если у вас нет аккаунта
             </p>
           </div>
         </div>

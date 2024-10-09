@@ -7,5 +7,5 @@ const newCategory = new Schema({
         required: true
     }
 })
-
-module.exports = mongoose.model('Category', newCategory)
+const Category = mongoose.model('Category', newCategory)
+module.exports = Category
