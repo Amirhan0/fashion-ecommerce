@@ -1,6 +1,6 @@
 export function Footer() {
     return (
-      <div className="relative flex justify-around items-center text-white py-16">
+      <div className="relative flex justify-around items-center text-white py-16 font-sans">
         <div className="flex flex-col  space-y-2 text-[15px] leading-none w-1/3">
           <span className="cursor-pointer">политика конфиденциальности</span>
           <span className="cursor-pointer ">согласие на обработку персональных данных</span>
