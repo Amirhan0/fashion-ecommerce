@@ -1,33 +1,59 @@
+import { useNavigate } from "react-router-dom";
+
 const Header = () => {
+  const navigate = useNavigate();
 
   return (
-    <>
-      <div className="pt-10 flex items-center justify-between">
-        <div className="flex text-[20px] items-center ">
-          <img src="/logo.svg" alt="" className="h-[30px]" />
-          <div className="flex justify-between ">
-            <div className="navButton">
-              <span className="hover:text-[#D1C12B]">ГЛАВНАЯ</span>
-            </div>
-            <div className="navButton">
-              <span className="hover:text-[#D1C12B]">КОЛЛЕКЦИИ</span>
-            </div>
-            <div className="navButton">
-              <span className="hover:text-[#D1C12B]">О НАС</span>
-            </div>
-            <div className="navButton">
-              <span className="hover:text-[#D1C12B]">КОНТАКТЫ</span>
-            </div>
-            <div className="navButton">
-              <span className="hover:text-[#D1C12B]">КОРЗИНА</span>
-            </div>
+    <div className="pt-10 flex items-center justify-between py-32">
+      <div className="flex text-[20px] items-center">
+        <img src="/logo.svg" alt="Logo" className="h-[30px]" />
+        <div className="flex justify-between ml-4">
+          <div className="navButton">
+            <span
+              onClick={() => navigate("/")}
+              className="hover:text-[#D1C12B] cursor-pointer"
+            >
+              ГЛАВНАЯ
+            </span>
+          </div>
+          <div className="navButton">
+            <span
+              onClick={() => navigate("/collections")}
+              className="hover:text-[#D1C12B] cursor-pointer"
+            >
+              КОЛЛЕКЦИИ
+            </span>
+          </div>
+          <div className="navButton">
+            <span
+              onClick={() => navigate("/about")}
+              className="hover:text-[#D1C12B] cursor-pointer"
+            >
+              О НАС
+            </span>
+          </div>
+          <div className="navButton">
+            <span
+              onClick={() => navigate("/contacts")}
+              className="hover:text-[#D1C12B] cursor-pointer"
+            >
+              КОНТАКТЫ
+            </span>
+          </div>
+          <div className="navButton">
+            <span
+              onClick={() => navigate("/cart")}
+              className="hover:text-[#D1C12B] cursor-pointer"
+            >
+              КОРЗИНА
+            </span>
           </div>
         </div>
-        <div>
-            <img src="/telegram.svg" alt="" />
-        </div>
       </div>
-    </>
+      <div>
+        <img src="/telegram.svg" alt="Telegram" />
+      </div>
+    </div>
   );
 };
 

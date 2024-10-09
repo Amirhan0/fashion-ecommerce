@@ -5,7 +5,7 @@ const ClothingForEveryone = () => {
         <>
             <div className="flex flex-col items-center relative pt-9 "> 
                 <img src="/logo.svg" alt="" />
-                <h1 className="text-9xl text-white font-usuallybold relative z-10 glitch text-center textShadow">
+                <h1 className="text-9xl text-white font-usuallybold relative z-10 glitchForHeader text-center textShadow">
                     Одежда для <br /> каждого
                 </h1>
                 <div className="absolute translate-y-11">

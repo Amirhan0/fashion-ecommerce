@@ -2,63 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
-    font-family: 'Uindbase Font 1';
-    src: url('./fonts/UF1.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Uindbase Font 1";
+  src: url("./fonts/UF1.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Usually-font';
-    src: url('./fonts/Usually-font.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Usually-font";
+  src: url("./fonts/Usually-font.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Usually-font-Bold';
-    src: url('./fonts/Usually-font-Bold.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Usually-font-Bold";
+  src: url("./fonts/Usually-font-Bold.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 * {
-    font-family: 'Uindbase Font 1', sans-serif;
+  font-family: "Uindbase Font 1", sans-serif;
 }
 
+.glitchForHeader {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 
+    5px 0px 0px #A332CA, /* Фиолетовое смещение */
+    -3px 0px 0px #D1C12B, /* Желтое смещение */
+    0 0 10px #D1C12B, /* Внешнее желтое свечение */
+    0 0 0px #A332CA; /* Внешнее фиолетовое свечение */
+  position: relative;
+}
 .glitch {
-    position: relative;
-    color: white;
-    text-shadow: 
-        -2px -2px 0px #A332CA,
-        -2px -2px 0px #A332CA,
-        -2px -2px 0px #A332CA,
-        -2px -2px 0px #A332CA;
+  position: relative;
+  color: #ffffff;
+  text-shadow: 
+    2px 0px 0px #A332CA, /* Фиолетовое смещение */
+    -1px 0px 0px #D1C12B, /* Желтое смещение */
+    0 0 10px #D1C12B, /* Внешнее желтое свечение */
+    0 0 0px #A332CA; /* Внешнее фиолетовое свечение */
+  position: relative;
 }
 
 .noselect {
-    user-select: none; 
-    pointer-events: none; 
+  user-select: none;
+  pointer-events: none;
 }
 
 .text-shadow {
-    text-shadow: 0 0 5px rgba(209, 193, 43, 0.8), 
-                 0 0 10px rgba(209, 193, 43, 0.6);
+  text-shadow: 0 0 5px rgba(209, 193, 43, 0.8), 0 0 10px rgba(209, 193, 43, 0.6);
 }
-
 
 .input-custom::placeholder {
-    font-family: 'Uindbase Font 1';
-    font-size: 15px;
-    color: #A0A3A9;
-  }
+  font-family: "Uindbase Font 1";
+  font-size: 15px;
+  color: #a0a3a9;
+}
 
 .navButton {
-    color: white;
-    padding: 10px 30px;
-    
-    
+  color: white;
+  padding: 10px 30px;
 }
-  
+.logoCircle {
+  width: 27px;
+  height: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.colNavText {
+  font-size: 20px;
+  position: relative; /* Для работы псевдоэлемента ::before */
+  transition: all 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.colNavText::before {
+  content: "→"; 
+  position: absolute;
+  left: -30px; 
+  opacity: 0;
+  transform: translateX(-20px);
+  color: #ffffff; 
+  transition: all 0.3s ease;
+}
+
+/* Эффекты при наведении */
+.colNavText:hover {
+  text-decoration: underline;
+  transform: translateX(30px);
+}
+
+.colNavText:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
