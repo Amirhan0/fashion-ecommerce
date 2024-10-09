@@ -8,8 +8,6 @@ const ShoppingCartPage = () => {
                <ClothingCartComponent/>
         <ClothingCartForm/>
         </div>
-     
-        <FooterForEveryone/>
         </>
     )
 }

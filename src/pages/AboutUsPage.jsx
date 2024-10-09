@@ -1,7 +1,6 @@
 import MyGoogleMapForEveryone from "../UI/MyGoogleMapForEveryone";
 import AboutUsComponent from "../components/AboutUsComponent";
 import AboutUsParagraph from "../components/AboutUsParagraph";
-import FooterForEveryone from '../components/FooterForEveryone'
 const AboutUsPage = () => {
     return (
         <>
@@ -9,7 +8,6 @@ const AboutUsPage = () => {
         <AboutUsComponent/>
         <AboutUsParagraph/>
         <MyGoogleMapForEveryone/>
-        <FooterForEveryone/>
         </div>
         </>
     );
