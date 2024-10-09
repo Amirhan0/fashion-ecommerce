@@ -58,7 +58,7 @@
 }
 
 .input-custom::placeholder {
-  font-family: "Uindbase Font 1";
+  font-family: "Arial", sans-serif;
   font-size: 15px;
   color: #a0a3a9;
 }

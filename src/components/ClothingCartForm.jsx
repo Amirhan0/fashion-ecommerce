@@ -8,17 +8,17 @@ const ClothingCartForm = () => {
         </div>
   
         <div className="ml-8">
-          <h1 className="font-uindbase text-white text-2xl">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
+          <h1 className="font-arial text-white text-2xl">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
   
           <form className="flex flex-col space-y-4 mt-4">
             <div>
-              <label htmlFor="name" className="block font-medium text-gray-700 font-uindbase text-xl">
+              <label htmlFor="name" className="block font-medium text-gray-700 font-arial text-xl">
                 Данные получателя
               </label>
               <input
                 type="text"
                 id="lastName"
-                className="mt-1 px-4 py-3 w-full rounded-md input-custom"
+                className="mt-1 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Фамилия"
                 style={{
                   background: '#10171F',
@@ -29,7 +29,7 @@ const ClothingCartForm = () => {
                 <input
                 type="text"
                 id="firstName"
-                className="mt-4 px-4 py-3 w-full rounded-md"
+                className="mt-4 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Имя"
                 style={{
                   background: '#10171F',
@@ -40,7 +40,7 @@ const ClothingCartForm = () => {
               <input
                 type="text"
                 id="middleName"
-                className="mt-4 px-4 py-3 w-full rounded-md"
+                className="mt-4 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Отчество"
                 style={{
                   background: '#10171F',
@@ -57,7 +57,7 @@ const ClothingCartForm = () => {
               <input
                 type="text"
                 id="phoneNumber"
-                className="mt-1 px-4 py-3 w-full rounded-md"
+                className="mt-1 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Телефон"
                 style={{
                   background: '#10171F',
@@ -74,7 +74,7 @@ const ClothingCartForm = () => {
               <input
                 type="text"
                 id="city"
-                className="mt-1 px-4 py-3 w-full rounded-md"
+                className="mt-1 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Город"
                 style={{
                   background: '#10171F',
@@ -85,7 +85,7 @@ const ClothingCartForm = () => {
                <input
                 type="text"
                 id="street"
-                className="mt-4 px-4 py-3 w-full rounded-md"
+                className="mt-4 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Улица"
                 style={{
                   background: '#10171F',
@@ -97,7 +97,7 @@ const ClothingCartForm = () => {
               <input
                 type="text"
                 id="home"
-                className="mt-4 px-4 py-3 w-full rounded-md"
+                className="mt-4 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Дом"
                 style={{
                   background: '#10171F',
@@ -109,7 +109,7 @@ const ClothingCartForm = () => {
                 type="text"
                 id="
                 apartment"
-                className="mt-4 px-4 py-3 w-full rounded-md"
+                className="mt-4 px-4 py-3 w-full rounded-md input-custom "
                 placeholder="Квартира"
                 style={{
                   background: '#10171F',
@@ -125,14 +125,14 @@ const ClothingCartForm = () => {
                 type="checkbox"
                 id="
                 onlinePayment"
-                className="mt-4 px-4 py-3 w-full rounded-md"
+                className="mt-4 px-4 py-3 w-full rounded-md " 
                 style={{
                   background: '#10171F',
                   boxShadow: '0px 4px 4px 0px #00000040',
                   color: '#fff',
                 }}
               />
-        <label htmlFor="onlinePayment" className="ml-2 text-white text-lg">
+        <label htmlFor="onlinePayment" className="ml-2 text-white text-lg font-arial">
           Оплата онлайн
         </label>
       </div>
@@ -148,7 +148,7 @@ const ClothingCartForm = () => {
                   color: '#fff',
                 }}
               />
-        <label htmlFor="cashPayment" className="ml-2 text-white text-lg">
+        <label htmlFor="cashPayment" className="ml-2 text-white text-lg font-arial">
           Оплата наличными
         </label>
       </div>

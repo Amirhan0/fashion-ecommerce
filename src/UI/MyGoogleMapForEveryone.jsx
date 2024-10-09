@@ -41,7 +41,7 @@ const MyGoogleMapForEveryone = () => {
           <span className="font-uindbase text-white text-2xl">
             itstep@gmail.kz
           </span>
-          <img src="/telegram.svg" className="w-20 h-20" alt="" />
+          <img src="/telegram.svg" className="w-20 h-20 cursor-pointer" alt="" />
         </div>
       </div>
     </div>

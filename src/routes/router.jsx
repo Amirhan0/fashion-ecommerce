@@ -4,6 +4,8 @@ import ClothingDocumentation from "../pages/ClothingDocumentation";
 import AboutUsPage from "../pages/AboutUsPage";
 import ShoppingCartPage from "../pages/ShoppingCartPage";
 import  Collections  from "../pages/Collections";
+import LoginPage from "../pages/LoginPage";
+import RegistrPage from "../pages/RegistrPage";
 
 function AppRouter() {
     return (
@@ -13,6 +15,8 @@ function AppRouter() {
         <Route path="/documentation" element={<ClothingDocumentation/>} />
         <Route path="/about" element={<AboutUsPage/>} />
         <Route path="/cart" element={<ShoppingCartPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/registration" element={<RegistrPage/>} />
         </Routes>
     )
 }

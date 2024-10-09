@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import LogRegBtn from "./LogRegBtn";
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -50,8 +52,11 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div>
-        <img src="/telegram.svg" alt="Telegram" />
+      <div className="flex gap-10 items-center">
+        <div>
+          <img src="/telegram.svg" alt="Telegram" className="cursor-pointer" />
+        </div>
+        <LogRegBtn/>
       </div>
     </div>
   );

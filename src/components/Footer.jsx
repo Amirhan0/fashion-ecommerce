@@ -10,7 +10,7 @@ export function Footer() {
           <span>2022 GruboGovorya</span>
         </div>
         <div className="flex justify-end w-1/3">
-          <img src="/telegram.svg" alt="Telegram" />
+          <img src="/telegram.svg" alt="Telegram" className="cursor-pointer"/>
         </div>
       </div>
     );
