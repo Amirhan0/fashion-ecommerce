@@ -1,6 +1,26 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios'
 export default function LoginPage() {
+  const  [emailUser, setEmailUser] = useState('')
+  const [passwordUser, setPasswordUser] = useState('')
+  const [error, setError] = useState('')
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('http://localhost:4000/api/login', {
+        emailUser,
+        passwordUser
+      })
+      const {token, user} = response.data
+      localStorage.setItem('token', token)
+      navigate('/')
+      console.log(user)
+    } catch (error) {
+    console.log(error.response.data)      
+    setError(error.response.data.message)
+    }
+  }
+
   const navigate = useNavigate()
 
   function navigation(link) {
@@ -35,6 +55,8 @@ export default function LoginPage() {
             <input
               type="text"
               placeholder="Email"
+              value={emailUser}
+             onChange={(e) => setEmailUser(e.target.value)}
               className="bg-transparent outline-none border-[#1d2938] border-2 rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[#ffffff] w-full font-arial"
             />
             
@@ -45,12 +67,14 @@ export default function LoginPage() {
             <input
               type="password"
               placeholder="Пароль"
+              value={passwordUser}
+              onChange={(e) => setPasswordUser(e.target.value)}
               className="bg-transparent outline-none border-[#1d2938] border-2 rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[#ffffff] w-full font-arial"
             />
             
           </div>
   
-       
+          <p className="text-red-500 font-arial text-xl">{error}</p>
           <div className="text-right">
             <a href="#" className="text-gray-400 hover:underline text-sm font-arial text-[18px]">
               Забыли пароль?
@@ -58,7 +82,7 @@ export default function LoginPage() {
           </div>
   
          
-          <button className="bg-[#2d333b] border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition">
+          <button type="submit" onClick={handleSubmit} className="bg-[#2d333b] border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition">
             Войти
           </button>
   
