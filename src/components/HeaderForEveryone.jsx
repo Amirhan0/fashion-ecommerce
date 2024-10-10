@@ -1,15 +1,33 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LogRegBtn from "./LogRegBtn";
+import HeaderProfile from "./HeaderProfile";
+import { logout, loginSuccess } from "../redux/slices/authSlice"; // добавьте действие loginSuccess
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      dispatch(loginSuccess(JSON.parse(storedUser))); // если пользователь найден в localStorage, обновляем состояние
+    }
+  }, [dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   return (
     <div className="pt-10 flex items-center justify-between py-32 px-4 sm:px-10">
       <div className="flex text-[20px] items-center">
-        <img src="/logo.svg" alt="Logo" className="h-[30px]" />
+        <img src="/logo.svg" alt="Logo" className="h-[50px]" />
       </div>
       <div className="sm:hidden">
         <button
@@ -32,7 +50,7 @@ const Header = () => {
           </svg>
         </button>
       </div>
-      <div className="hidden sm:flex space-x-4 text-[20px]">
+      <div className="hidden sm:flex space-x-4 text-[20px] translate-x-[-150px]">
         <span
           onClick={() => navigate("/")}
           className="navButton hover:text-[#D1C12B] cursor-pointer"
@@ -64,6 +82,7 @@ const Header = () => {
           КОРЗИНА
         </span>
       </div>
+
       {isMobileMenuOpen && (
         <div className="sm:hidden absolute top-20 left-0 w-full bg-[#10171F] py-4">
           <div className="flex flex-col items-center space-y-4 text-white">
@@ -115,8 +134,9 @@ const Header = () => {
           </div>
         </div>
       )}
+
       <div className="hidden sm:flex gap-10 items-center">
-        <LogRegBtn />
+        {isUserLoggedIn ? <HeaderProfile onLogout={handleLogout} /> : <LogRegBtn />}
       </div>
     </div>
   );

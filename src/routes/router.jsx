@@ -6,6 +6,7 @@ import  Collections  from "../pages/Collections";
 import LoginPage from "../pages/LoginPage";
 import RegistrPage from "../pages/RegistrPage";
 import ContactPage from "../pages/ContactPage";
+import  Profile  from "../pages/Profile";
 
 function AppRouter() {
     return (
@@ -17,6 +18,7 @@ function AppRouter() {
         <Route path="/cart" element={<ShoppingCartPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/registration" element={<RegistrPage/>} />
+        <Route path="/profile" element={<Profile/>} />
         </Routes>
     )
 }

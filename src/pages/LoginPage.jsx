@@ -1,29 +1,52 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-export default function LoginPage() {
-  const [emailUser, setEmailUser] = useState('');
-  const [passwordUser, setPasswordUser] = useState('');
-  const [error, setError] = useState('');
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/authSlice";
+import { useGoogleLogin } from "@react-oauth/google";
+
+const LoginPage = () => {
+  const [emailUser, setEmailUser] = useState("");
+  const [passwordUser, setPasswordUser] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const googleResponse = await axios.post("http://localhost:4000/api/google-login", {
+          token: tokenResponse.access_token,
+        });
+        const { token, user } = googleResponse.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch(login(user));
+        navigate("/");
+      } catch (error) {
+        setError("Google login failed");
+      }
+    },
+    onError: () => {
+      setError("Google login failed");
+    },
+  });
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/api/login', {
+      const response = await axios.post("http://localhost:4000/api/login", {
         emailUser,
-        passwordUser
+        passwordUser,
       });
       const { token, user } = response.data;
-      localStorage.setItem('token', token);
-      navigate('/');
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      dispatch(login(user)); // Вызов экшена login
+      navigate("/");
     } catch (error) {
       console.log(error.response.data);
       setError(error.response.data.message);
     }
-  };
-
-  const navigation = (link) => {
-    navigate(link);
   };
 
   return (
@@ -40,8 +63,11 @@ export default function LoginPage() {
       </div>
 
       <div className="flex flex-col justify-center bg-[#10171F] rounded-lg text-white text-[16px] sm:text-[20px] px-5 py-8 sm:py-10 max-w-[90%] sm:max-w-[500px] mx-auto space-y-4 font-arial">
-        <button className="bg-transparent border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition">
-          Войти с помощью Google
+        <button
+          onClick={googleLogin}
+          className="bg-[#2d333b] border-[#444c56] hover:bg-[#444c56] text-white py-2 px-4 rounded-lg"
+        >
+          Войти через Google
         </button>
         <div className="flex items-center space-x-2">
           <div className="w-full h-[1px] bg-[#444c56]"></div>
@@ -71,21 +97,38 @@ export default function LoginPage() {
 
         <p className="text-red-500 font-arial text-xl">{error}</p>
         <div className="text-right">
-          <a href="#" className="text-gray-400 hover:underline text-sm font-arial text-[16px] sm:text-[18px]">
+          <a
+            href="#"
+            className="text-gray-400 hover:underline text-sm font-arial text-[16px] sm:text-[18px]"
+          >
             Забыли пароль?
           </a>
         </div>
 
-        <button type="submit" onClick={handleSubmit} className="bg-[#2d333b] border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition">
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="bg-[#2d333b] border border-[#444c56] flex items-center justify-center py-2 rounded-lg text-white hover:bg-[#444c56] transition"
+        >
           Войти
         </button>
 
         <div className="text-center">
           <p className="text-gray-400 text-sm font-arial text-[16px] sm:text-[18px]">
-            <span className="underline font-arial cursor-pointer" onClick={() => navigation('/registration')}>Зарегистрируйтесь</span>, если у вас нет аккаунта
+            <span
+              className="underline font-arial cursor-pointer"
+              onClick={() => navigate("/registration")}
+            >
+              Зарегистрируйтесь
+            </span>
+            , если у вас нет аккаунта
           </p>
         </div>
       </div>
     </>
   );
-}
+};
+
+export default LoginPage;
+
+
