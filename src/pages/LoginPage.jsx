@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-
 export default function LoginPage() {
   const [emailUser, setEmailUser] = useState('');
   const [passwordUser, setPasswordUser] = useState('');
@@ -17,7 +16,6 @@ export default function LoginPage() {
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       navigate('/');
-      console.log(user);
     } catch (error) {
       console.log(error.response.data);
       setError(error.response.data.message);

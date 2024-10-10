@@ -87,7 +87,7 @@ export default function RegistrPage() {
       </div>
 
       <div className="flex flex-col justify-center bg-[#10171F] rounded-lg text-white text-[20px] px-5 py-14 max-w-[90%] sm:max-w-[500px] mx-auto space-y-4 font-arial">
-        <div className="flex justify-between mb-4">
+        <div className="flex justify-between mb-5">
           <div className={`flex items-center ${step === 1 ? "text-[#D1C12B]" : "text-gray-400"}`}>
             <div className={`w-10 h-10 rounded-full border-2 ${step >= 1 ? "border-[#D1C12B] bg-[#D1C12B]" : "border-gray-300"} transition-all duration-300 flex items-center justify-center`}>
               {step >= 1 ? <span className="text-white">1</span> : <span>1</span>}

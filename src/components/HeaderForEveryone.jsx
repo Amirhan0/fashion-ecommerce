@@ -52,7 +52,7 @@ const Header = () => {
           О НАС
         </span>
         <span
-          onClick={() => navigate("/documentation")}
+          onClick={() => navigate("/contacts")}
           className="navButton hover:text-[#D1C12B] cursor-pointer"
         >
           КОНТАКТЫ
@@ -96,7 +96,7 @@ const Header = () => {
             </span>
             <span
               onClick={() => {
-                navigate("/documentation");
+                navigate("/contacts");
                 setIsMobileMenuOpen(false);
               }}
               className="hover:text-[#D1C12B] cursor-pointer"
