@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const MyGoogleMapForEveryone = () => {
   const mapContainerStyle = {
-    width: "1000px",
+    width: "100%", // Изменено на 100%, чтобы адаптироваться к экрану
     height: "550px",
   };
 
@@ -15,15 +15,15 @@ const MyGoogleMapForEveryone = () => {
   return (
     <div className="flex flex-col mt-16">
       <div className="text-center mb-4 relative">
-        <h1 className="leading-none text-[180px] text-left noselect text-[#1F252D] font-usuallybold opacity-50">
+        <h1 className="leading-none text-[80px] md:text-[120px] lg:text-[180px] text-left noselect text-[#1F252D] font-usuallybold opacity-50">
           Контакты
         </h1>
-        <h1 className="text-[100px] text-white text-left font-uindbase absolute bottom-5 z-10 textShadow">
+        <h1 className="text-[50px] md:text-[75px] lg:text-[100px] text-white text-left font-uindbase absolute bottom-5 z-10 textShadow">
           МЫ ВСЕГДА НА СВЯЗИ
         </h1>
       </div>
-      <div className="flex ">
-        <div className="flex">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex-1">
           <LoadScript googleMapsApiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}>
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
@@ -34,14 +34,10 @@ const MyGoogleMapForEveryone = () => {
             </GoogleMap>
           </LoadScript>
         </div>
-        <div className="flex flex-col items-center justify-center h-[550px] w-full ">
-          <span className="font-uindbase text-white text-2xl">
-            8(000)000-00-00
-          </span>
-          <span className="font-uindbase text-white text-2xl">
-            itstep@gmail.kz
-          </span>
-          <img src="/telegram.svg" className="w-20 h-20 cursor-pointer" alt="" />
+        <div className="flex flex-col items-center justify-center h-[550px] w-full md:w-1/3">
+          <span className="font-uindbase text-white text-2xl">8(000)000-00-00</span>
+          <span className="font-uindbase text-white text-2xl">itstep@gmail.kz</span>
+          <img src="/telegram.svg" className="w-20 h-20 cursor-pointer mt-4" alt="" />
         </div>
       </div>
     </div>
