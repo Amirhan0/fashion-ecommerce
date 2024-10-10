@@ -20,6 +20,7 @@ const ContactPage = () => {
                     <h2 className="text-4xl font-bold mb-2">Амир</h2>
                     <p className="text-lg font-arial">Email:amirgasanov245@gmail.com</p>
                     <p className="text-lg font-arial">Телефон: +77752754313</p>
+                    <p className="text-lg font-arial">tg: @ameerqan</p>
                 </div>
                  <div className="bg-[#1F252D] text-white rounded-lg p-6 m-2 md:m-4 w-full md:w-1/2 flex flex-col items-center">
                     <img
@@ -30,6 +31,7 @@ const ContactPage = () => {
                     <h2 className="text-4xl font-bold mb-2">Макс</h2>
                     <p className="text-lg font-arial">Email:maxmax20051120@gmail.com</p>
                     <p className="text-lg font-arial">Телефон: +77071613629</p>
+                    <p className="text-lg font-arial">tg: @mode_all_mute</p>
                 </div>
             </div>
         </div>

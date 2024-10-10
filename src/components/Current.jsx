@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { ProductCard } from "../UI/ProductCard";
 
 export function Current() {
+  const navigate = useNavigate()
   const product = {
     name: "КОСТЮМ ADVOLATUM СОЦВЕТИЕ",
     price: 3751,
@@ -26,7 +28,7 @@ export function Current() {
           <ProductCard product={product} />
         </div>
         <div className="underline text-white text-[16px] sm:text-[20px] py-[30px] text-end">
-          <span className="cursor-pointer">СМОТРЕТЬ БОЛЬШЕ</span>
+          <span className="cursor-pointer" onClick={() => navigate('/collections')}>СМОТРЕТЬ БОЛЬШЕ</span>
         </div>
       </div>
     </div>
