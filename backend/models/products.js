@@ -15,10 +15,14 @@ const newProducts = new Schema({
         required: true
     },
     size: {
-        type: String,
+        type: Array,
         required: true
     },
     price: {
+        type: Number,
+        required: true
+    },
+    categoryId: {
         type: Number,
         required: true
     },

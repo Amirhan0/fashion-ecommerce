@@ -37,7 +37,7 @@ export default function Profile() {
 
   const openModal = () => {
     setIsModalOpen(true);
-    setNewProfile(profile); 
+    setNewProfile(profile); // Устанавливаем текущее состояние профиля в модальное окно
   };
 
   const closeModal = () => {
@@ -47,15 +47,18 @@ export default function Profile() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewProfile({ ...newProfile, [name]: value }); 
+    setNewProfile({ ...newProfile, [name]: value }); // Обновляем профиль при изменении полей
   };
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.put("http://localhost:4000/api/users", newProfile);
+      // Отправляем обновленные данные профиля на сервер
+      const response = await axios.put("http://localhost:4000/api/items", newProfile);
       
+      // Сохраняем обновленные данные профиля в state
       setProfile(newProfile);
   
+      // Сохраняем обновленные данные профиля в localStorage
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -65,7 +68,8 @@ export default function Profile() {
           imageUser: newProfile.imgUrl,
         })
       );
-
+  
+      // Закрываем модальное окно
       closeModal();
     } catch (error) {
       console.log(error);

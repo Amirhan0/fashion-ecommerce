@@ -5,7 +5,11 @@ const newCategory = new Schema({
     categoryName: {
         type: String,
         required: true
+    },
+    categoryId: {
+        type: Number,
+        required: true
     }
 })
-const Category = mongoose.model('Category', newCategory)
+const Category = mongoose.model('categorys', newCategory)
 module.exports = Category

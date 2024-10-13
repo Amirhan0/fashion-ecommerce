@@ -5,6 +5,8 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const UsersRoutes = require('./routes/users-routes')
+const CategoryRoutes = require('./routes/category-routes')
+const ProductsRoutes = require('./routes/products-routes')
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -23,6 +25,8 @@ app.get('/api/items', (req, res) => {
 app.use(cors())
 app.use(methodOverride())
 app.use(UsersRoutes)
+app.use(CategoryRoutes)
+app.use(ProductsRoutes)
 
 app.listen(port, () => {
   console.log(`Сервер запустился на порту ${port}`)
