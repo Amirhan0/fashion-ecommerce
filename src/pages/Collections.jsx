@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "../UI/ProductCard";
-
+import { Link, useNavigate } from "react-router-dom";
 export default function Collections() {
+  const navigate = useNavigate()
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -23,6 +24,7 @@ export default function Collections() {
     fetch("http://localhost:4000/api/products")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         setProducts(data);
         setFilteredProducts(data); 
       })
@@ -51,6 +53,16 @@ export default function Collections() {
 
   const handleMouseLeave = () => {
     setActiveIndex(null);
+  };
+
+
+  const handleProductClick = (productId) => {
+    const user = localStorage.getItem("user"); 
+    if (!user) {
+      navigate("/login"); 
+    } else {
+      navigate(`/products/${productId}`); 
+    }
   };
 
   return (
@@ -91,7 +103,9 @@ export default function Collections() {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-5 gap-x-7 w-full md:w-3/4">
           {filteredProducts.map((product) => (
-            <ProductCard key={product._id} product={product} />
+            <div key={product._id} onClick={() => handleProductClick(product._id)} className="cursor-pointer">
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </div>

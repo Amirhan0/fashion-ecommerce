@@ -10,4 +10,18 @@ const getProducts = async (req, res) => {
   }
 };
 
-module.exports = { getProducts };
+
+const getProductId = async (req,res) => {
+  const {id} = req.params
+  try {
+    const product = await Products.findById(id)
+    if (!product) {
+      return res.status(404).json({ message: "Продукт не найден" });
+    }
+    res.json(product)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message: 'Ошибка на сервере'})
+  }
+}
+module.exports = { getProducts, getProductId };

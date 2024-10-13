@@ -7,7 +7,7 @@ import LoginPage from "../pages/LoginPage";
 import RegistrPage from "../pages/RegistrPage";
 import ContactPage from "../pages/ContactPage";
 import  Profile  from "../pages/Profile";
-
+import { ProductDetails } from "../pages/ProductDetails";
 function AppRouter() {
     return (
         <Routes>
@@ -19,6 +19,7 @@ function AppRouter() {
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/registration" element={<RegistrPage/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/products/:id" element={<ProductDetails/>} />
         </Routes>
     )
 }
