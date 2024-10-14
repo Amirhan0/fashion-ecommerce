@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import ButtonForEveryOne from '../UI/ButtonForEveryone';
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const ClothingCartForm = () => {
     const [address, setAddress] = useState({ home: '', apartment: '', city: '', street: '' });
     const [paymentMethod, setPaymentMethod] = useState('');
@@ -8,7 +10,6 @@ const ClothingCartForm = () => {
     const [name, setName] = useState({ firstName: '', lastName: '', middleName: '' });
     const [phoneNumber, setPhoneNumber] = useState('');
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null); 
 
     const handleAddressChange = (e) => {
         const { id, value } = e.target;
@@ -37,8 +38,6 @@ const ClothingCartForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setError(null);
-    
         const orderData = {
             recipient: {
                 ...name,        
@@ -55,17 +54,19 @@ const ClothingCartForm = () => {
     
         try {
             const response = await axios.post('http://localhost:4000/api/orders', orderData);
+            toast.success('Заказ успешно оформлен!', { position: 'top-right' });
             console.log(response.data);
         } catch (error) {
             if (error.response) {
                 console.error('Ошибка ответа сервера:', error.response.data);
-                setError(error.response.data.message || 'Произошла ошибка при отправке заказа');
+                toast.error(error.response.data.message || 'Произошла ошибка при отправке заказа', { position: 'top-right' });
             } else if (error.request) {
                 console.error('Ошибка запроса:', error.request);
-                setError('Нет ответа от сервера');
+                toast.error('Нет ответа от сервера', { position: 'top-right' });
+
             } else {
                 console.error('Ошибка при настройке запроса:', error.message);
-                setError('Ошибка при настройке запроса');
+                toast.error('Ошибка при настройке запроса', { position: 'top-right' });
             }
         } finally {
             setLoading(false);
@@ -77,11 +78,9 @@ const ClothingCartForm = () => {
             <div>
                 <hr className="border-l-4 border-[#1F252D] h-[650px]" />
             </div>
-
+            <ToastContainer />
             <div className="ml-0 md:ml-8 mt-8 md:mt-0 w-full md:w-auto">
                 <h1 className="font-arial text-white text-2xl">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
-
-                {error && <p className="text-red-500">{error}</p>}
 
                 <form className="flex flex-col space-y-4 mt-4" onSubmit={handleSubmit}>
 

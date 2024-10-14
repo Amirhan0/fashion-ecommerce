@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function RegistrPage() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -64,9 +65,11 @@ export default function RegistrPage() {
           passwordUser: formData.passwordUser,
         }
       );
-
+      toast.success('Успешная регистрация!', { position: 'top-right' });
       console.log(response.data);
-      navigate("/login");
+      setTimeout(() => {
+        navigate("/login");
+    }, 2000); 
     } catch (error) {
       console.error(error);
       alert("Произошла ошибка при регистрации. Пожалуйста, попробуйте снова.");
@@ -85,7 +88,7 @@ export default function RegistrPage() {
           </h1>
         </div>
       </div>
-
+      <ToastContainer/>
       <div className="flex flex-col justify-center bg-[#10171F] rounded-lg text-white text-[20px] px-5 py-14 max-w-[90%] sm:max-w-[500px] mx-auto space-y-4 font-arial">
         <div className="flex justify-between mb-5">
           <div className={`flex items-center ${step === 1 ? "text-[#D1C12B]" : "text-gray-400"}`}>
