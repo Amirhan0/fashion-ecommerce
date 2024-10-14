@@ -4,7 +4,7 @@ const ShoppingCartPage = () => {
     return (
         <>
         <div className="flex">
-               <ClothingCartComponent/>
+        <ClothingCartComponent/>
         <ClothingCartForm/>
         </div>
         </>

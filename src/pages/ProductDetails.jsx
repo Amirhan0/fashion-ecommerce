@@ -25,15 +25,38 @@ export function ProductDetails() {
     fetchProduct();
   }, [id]);
 
+
+
+  const handleClick = (product) => {
+    if (!selectedSize) {
+      alert("Пожалуйста, выберите размер перед добавлением в корзину.");
+      return; 
+    }
+    const storedUser = JSON.parse(localStorage.getItem('user'))
+    const emailUser = storedUser ? storedUser.emailUser : null;
+    const cartProducts = JSON.parse(localStorage.getItem('selectedProducts')) || [];
+    const newProduct = {
+      userId: emailUser,
+      id: product._id,
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      size: selectedSize
+    }
+    const updatedCart = [...cartProducts, newProduct]
+
+    localStorage.setItem('selectedProducts', JSON.stringify(updatedCart))
+    navigate('/cart')
+  }
+
   if (loading) return <p>Загрузка...</p>;
   if (error) return <p>Ошибка загрузки продукта: {error.message}</p>;
   if (!product) return <p>Продукт не найден.</p>;
-
   return (
     <div className="min-h-screen bg-[#10171F] text-white p-4 sm:p-10 flex flex-col items-center">
       <button
         onClick={() => navigate(-1)}
-        className="text-[#D1C12B] mb-6 text-lg text-3xl cursor-pointer"
+        className="text-white underline mb-6 text-3xl cursor-pointer"
       >
         Назад
       </button>
@@ -66,7 +89,7 @@ export function ProductDetails() {
             </div>
           </div>
 
-          <ButtonForEveryone buttonText={'В КОРЗИНУ'}/>
+          <ButtonForEveryone onClick={() => handleClick(product)} buttonText={'В КОРЗИНУ'}/>
         </div>
       </div>
     </div>
