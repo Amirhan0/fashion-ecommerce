@@ -3,19 +3,21 @@ import { useEffect, useState } from "react";
 const ClothingCartComponent = () => {
     const [carts, setCarts] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0)
+    const user = JSON.parse(localStorage.getItem('user'));
+    const emailUser = user ? user.emailUser : null
     useEffect(() => {
         const storedCarts = JSON.parse(localStorage.getItem('selectedProducts')) || [];
-        const parsedProducts = storedCarts.map((product) => ({
+        const parsedProducts = storedCarts.filter(product => product.userId === emailUser).map((product) => ({
             ...product,
-            quantity: product.quantity || 1,
-        }));
+            quantity: product.quantity || 1
+        }))
         setCarts(parsedProducts);
-    }, []);
+    }, [emailUser]);
 
     useEffect(() => {
         const newTotalAmount = carts.reduce((total, cart) => total + cart.price * cart.quantity, 0)
         setTotalAmount(newTotalAmount)
-        localStorage.setItem('totalAmount', setTotalAmount)
+        localStorage.setItem('totalAmount', newTotalAmount)
     }, [carts])
     const handleIncreaseQuantity = (index) => {
         const updatedCarts = [...carts];
