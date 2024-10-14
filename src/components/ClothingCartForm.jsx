@@ -1,6 +1,77 @@
-import ButtonForEveryOne from '../UI/ButtonForEveryone'
-
+import { useState } from 'react';
+import ButtonForEveryOne from '../UI/ButtonForEveryone';
+import axios from 'axios'
 const ClothingCartForm = () => {
+    const [address, setAddress] = useState({ home: '', apartment: '', city: '', street: '' });
+    const [paymentMethod, setPaymentMethod] = useState('');
+    const [isHomeSelected, setIsHomeSelected] = useState(false);
+    const [name, setName] = useState({ firstName: '', lastName: '', middleName: '' });
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null); 
+
+    const handleAddressChange = (e) => {
+        const { id, value } = e.target;
+        setAddress((prev) => ({ ...prev, [id]: value }));
+    };
+
+    const handleNameChange = (e) => {
+        const { id, value } = e.target;
+        setName((prev) => ({ ...prev, [id]: value }));
+    };
+
+    const handleSelectHome = () => {
+        setIsHomeSelected(true);
+        setAddress((prev) => ({ ...prev, apartment: '' })); 
+    };
+
+    const handleSelectApartment = () => {
+        setIsHomeSelected(false);
+        setAddress((prev) => ({ ...prev, home: '' }));
+    };
+
+    const handlePaymentMethodChange = (e) => {
+        setPaymentMethod(e.target.id);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+    
+        const orderData = {
+            recipient: {
+                ...name,        
+                phoneNumber, 
+            },
+            deliveryAddress: {
+                home: address.home,
+                apartment: address.apartment,
+                city: address.city,
+                street: address.street,
+            },
+            paymentMethod,
+        };
+    
+        try {
+            const response = await axios.post('http://localhost:4000/api/orders', orderData);
+            console.log(response.data);
+        } catch (error) {
+            if (error.response) {
+                console.error('Ошибка ответа сервера:', error.response.data);
+                setError(error.response.data.message || 'Произошла ошибка при отправке заказа');
+            } else if (error.request) {
+                console.error('Ошибка запроса:', error.request);
+                setError('Нет ответа от сервера');
+            } else {
+                console.error('Ошибка при настройке запроса:', error.message);
+                setError('Ошибка при настройке запроса');
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="flex flex-col md:flex-row items-start pt-24 md:pt-44 px-4 md:px-0">
             <div>
@@ -10,38 +81,21 @@ const ClothingCartForm = () => {
             <div className="ml-0 md:ml-8 mt-8 md:mt-0 w-full md:w-auto">
                 <h1 className="font-arial text-white text-2xl">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
 
-                <form className="flex flex-col space-y-4 mt-4">
+                {error && <p className="text-red-500">{error}</p>}
+
+                <form className="flex flex-col space-y-4 mt-4" onSubmit={handleSubmit}>
+
                     <div>
-                        <label htmlFor="name" className="block font-medium text-gray-700 font-arial text-xl">
-                            Данные получателя
+                        <label htmlFor="lastName" className="block font-medium text-gray-700 font-arial text-xl">
+                            Фамилия
                         </label>
                         <input
                             type="text"
                             id="lastName"
                             className="mt-1 px-4 py-3 w-full rounded-md input-custom"
                             placeholder="Фамилия"
-                            style={{
-                                background: '#10171F',
-                                boxShadow: '0px 4px 4px 0px #00000040',
-                                color: '#fff',
-                            }}
-                        />
-                        <input
-                            type="text"
-                            id="firstName"
-                            className="mt-4 px-4 py-3 w-full rounded-md input-custom"
-                            placeholder="Имя"
-                            style={{
-                                background: '#10171F',
-                                boxShadow: '0px 4px 4px 0px #00000040',
-                                color: '#fff',
-                            }}
-                        />
-                        <input
-                            type="text"
-                            id="middleName"
-                            className="mt-4 px-4 py-3 w-full rounded-md input-custom"
-                            placeholder="Отчество"
+                            value={name.lastName}
+                            onChange={handleNameChange}
                             style={{
                                 background: '#10171F',
                                 boxShadow: '0px 4px 4px 0px #00000040',
@@ -51,7 +105,44 @@ const ClothingCartForm = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="phone" className="block font-medium text-gray-700 font-uindbase text-xl">
+                        <label htmlFor="firstName" className="block font-medium text-gray-700 font-arial text-xl">
+                            Имя
+                        </label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            className="mt-1 px-4 py-3 w-full rounded-md input-custom"
+                            placeholder="Имя"
+                            value={name.firstName}
+                            onChange={handleNameChange}
+                            style={{
+                                background: '#10171F',
+                                boxShadow: '0px 4px 4px 0px #00000040',
+                                color: '#fff',
+                            }}
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="middleName" className="block font-medium text-gray-700 font-arial text-xl">
+                            Отчество
+                        </label>
+                        <input
+                            type="text"
+                            id="middleName"
+                            className="mt-1 px-4 py-3 w-full rounded-md input-custom"
+                            placeholder="Отчество"
+                            value={name.middleName}
+                            onChange={handleNameChange}
+                            style={{
+                                background: '#10171F',
+                                boxShadow: '0px 4px 4px 0px #00000040',
+                                color: '#fff',
+                            }}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="phoneNumber" className="block font-medium text-gray-700 font-arial text-xl">
                             Номер телефона
                         </label>
                         <input
@@ -59,6 +150,8 @@ const ClothingCartForm = () => {
                             id="phoneNumber"
                             className="mt-1 px-4 py-3 w-full rounded-md input-custom"
                             placeholder="Телефон"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
                             style={{
                                 background: '#10171F',
                                 boxShadow: '0px 4px 4px 0px #00000040',
@@ -66,7 +159,7 @@ const ClothingCartForm = () => {
                             }}
                         />
                     </div>
-
+                   
                     <div>
                         <label htmlFor="city" className="block text-lg font-medium text-gray-700">
                             Данные места доставки
@@ -76,6 +169,8 @@ const ClothingCartForm = () => {
                             id="city"
                             className="mt-1 px-4 py-3 w-full rounded-md input-custom"
                             placeholder="Город"
+                            value={address.city}
+                            onChange={handleAddressChange}
                             style={{
                                 background: '#10171F',
                                 boxShadow: '0px 4px 4px 0px #00000040',
@@ -87,6 +182,8 @@ const ClothingCartForm = () => {
                             id="street"
                             className="mt-4 px-4 py-3 w-full rounded-md input-custom"
                             placeholder="Улица"
+                            value={address.street}
+                            onChange={handleAddressChange}
                             style={{
                                 background: '#10171F',
                                 boxShadow: '0px 4px 4px 0px #00000040',
@@ -99,6 +196,9 @@ const ClothingCartForm = () => {
                                 id="home"
                                 className="mt-4 px-4 py-3 w-full rounded-md input-custom"
                                 placeholder="Дом"
+                                value={isHomeSelected ? address.home : ''} 
+                                onChange={handleAddressChange}
+                                onFocus={handleSelectHome}
                                 style={{
                                     background: '#10171F',
                                     boxShadow: '0px 4px 4px 0px #00000040',
@@ -110,6 +210,9 @@ const ClothingCartForm = () => {
                                 id="apartment"
                                 className="mt-4 px-4 py-3 w-full rounded-md input-custom"
                                 placeholder="Квартира"
+                                value={!isHomeSelected ? address.apartment : ''} 
+                                onChange={handleAddressChange}
+                                onFocus={handleSelectApartment} 
                                 style={{
                                     background: '#10171F',
                                     boxShadow: '0px 4px 4px 0px #00000040',
@@ -122,8 +225,10 @@ const ClothingCartForm = () => {
                     <div className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
                         <div className="flex items-center">
                             <input
-                                type="checkbox"
+                                type="radio"
                                 id="onlinePayment"
+                                onChange={handlePaymentMethodChange}
+                                checked={paymentMethod === 'onlinePayment'}
                                 className="mt-4"
                             />
                             <label htmlFor="onlinePayment" className="ml-2 text-white text-lg font-arial">
@@ -132,9 +237,11 @@ const ClothingCartForm = () => {
                         </div>
                         <div className="flex items-center">
                             <input
-                                type="checkbox"
+                                type="radio"
                                 id="cashPayment"
                                 className="mt-4"
+                                onChange={handlePaymentMethodChange}
+                                checked={paymentMethod === 'cashPayment'}
                             />
                             <label htmlFor="cashPayment" className="ml-2 text-white text-lg font-arial">
                                 Оплата наличными
@@ -142,7 +249,13 @@ const ClothingCartForm = () => {
                         </div>
                     </div>
 
-                    <ButtonForEveryOne buttonText="ОФОРМИТЬ" />
+                    <ButtonForEveryOne 
+                        className="mt-4" 
+                        type="submit" 
+                        disabled={loading} 
+                    >
+                        {loading ? 'Загрузка...' : 'Оформить заказ'}
+                    </ButtonForEveryOne>
                 </form>
             </div>
         </div>

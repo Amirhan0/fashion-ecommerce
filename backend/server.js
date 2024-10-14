@@ -7,6 +7,7 @@ const dotenv = require('dotenv')
 const UsersRoutes = require('./routes/users-routes')
 const CategoryRoutes = require('./routes/category-routes')
 const ProductsRoutes = require('./routes/products-routes')
+const OrdersRoutes = require('./routes/order-routes')
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -27,6 +28,7 @@ app.use(methodOverride())
 app.use(UsersRoutes)
 app.use(CategoryRoutes)
 app.use(ProductsRoutes)
+app.use(OrdersRoutes)
 
 app.listen(port, () => {
   console.log(`Сервер запустился на порту ${port}`)
