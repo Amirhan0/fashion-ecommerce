@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ButtonForEveryOne from '../UI/ButtonForEveryone';
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const ClothingCartForm = () => {
     const [address, setAddress] = useState({ home: '', apartment: '', city: '', street: '' });
     const [paymentMethod, setPaymentMethod] = useState('');
@@ -10,7 +11,11 @@ const ClothingCartForm = () => {
     const [name, setName] = useState({ firstName: '', lastName: '', middleName: '' });
     const [phoneNumber, setPhoneNumber] = useState('');
     const [loading, setLoading] = useState(false)
-
+    const [selectedProducts, setSelectedProducts] = useState([]);
+    useEffect(() => {
+        const products = JSON.parse(localStorage.getItem('selectedProducts')) || [];
+        setSelectedProducts(products);
+    }, []);
     const handleAddressChange = (e) => {
         const { id, value } = e.target;
         setAddress((prev) => ({ ...prev, [id]: value }));
@@ -50,12 +55,15 @@ const ClothingCartForm = () => {
                 street: address.street,
             },
             paymentMethod,
+            products: selectedProducts,
         };
     
         try {
             const response = await axios.post('http://localhost:4000/api/orders', orderData);
             toast.success('Заказ успешно оформлен!', { position: 'top-right' });
             console.log(response.data);
+            localStorage.removeItem('selectedProducts');
+            setSelectedProducts([]); 
         } catch (error) {
             if (error.response) {
                 console.error('Ошибка ответа сервера:', error.response.data);

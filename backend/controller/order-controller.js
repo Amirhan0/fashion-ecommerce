@@ -16,7 +16,7 @@ const createOrder = async (req, res) => {
     }
 
     try {
-        const { recipient, deliveryAddress, paymentMethod } = req.body;
+        const { recipient, deliveryAddress, paymentMethod, products  } = req.body;
 
         if (deliveryAddress.home && deliveryAddress.apartment) {
             return res.status(400).json({ error: 'Укажите только номер дома или квартиры' });
@@ -26,6 +26,7 @@ const createOrder = async (req, res) => {
             recipient,
             deliveryAddress,
             paymentMethod,
+            products
         });
 
         await newOrder.save();

@@ -15,7 +15,15 @@ const newOrder = new Schema({
         home: {type: String},
         apartment: {type: String}
     },
-    paymentMethod: {type: String, required: true}
+    paymentMethod: {type: String, required: true},
+    products: [{
+        id: String,
+        name: String,
+        price: Number,
+        size: String,
+        image: String,
+        quantiy: Number
+    }],
 })
 
 const Order = mongoose.model('orders', newOrder)
