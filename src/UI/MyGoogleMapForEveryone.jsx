@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const MyGoogleMapForEveryone = () => {
   const mapContainerStyle = {
-    width: "100%", // Изменено на 100%, чтобы адаптироваться к экрану
+    width: "100%",
     height: "550px",
   };
 

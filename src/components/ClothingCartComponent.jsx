@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-const ClothingCartComponent = () => {
-    const [carts, setCarts] = useState([]);
+const ClothingCartComponent = ({ carts, setCarts }) => {
     const [totalAmount, setTotalAmount] = useState(0)
     const user = JSON.parse(localStorage.getItem('user'));
     const emailUser = user ? user.emailUser : null

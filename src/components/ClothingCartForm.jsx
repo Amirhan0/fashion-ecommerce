@@ -4,7 +4,7 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ClothingCartForm = () => {
+const ClothingCartForm = ({setCarts}) => {
     const [address, setAddress] = useState({ home: '', apartment: '', city: '', street: '' });
     const [paymentMethod, setPaymentMethod] = useState('');
     const [isHomeSelected, setIsHomeSelected] = useState(false);
@@ -64,6 +64,7 @@ const ClothingCartForm = () => {
             console.log(response.data);
             localStorage.removeItem('selectedProducts');
             setSelectedProducts([]); 
+            setCarts([]);
         } catch (error) {
             if (error.response) {
                 console.error('Ошибка ответа сервера:', error.response.data);
