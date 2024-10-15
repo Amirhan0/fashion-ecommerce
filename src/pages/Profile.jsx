@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Orders from "../components/Orders";
+
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -11,27 +13,26 @@ export default function Profile() {
     phone: "",
     imgUrl: "defaultAvatar.svg",
   });
+  const [orders, setOrders] = useState([]);
   
 
   const [newProfile, setNewProfile] = useState(profile);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Получаем данные пользователя из localStorage при загрузке компонента
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setProfile({
         name: user.nameUser,
         email: user.emailUser,
         phone: user.phoneUser,
-        imgUrl: user?.imageUser || "defaultAvatar.svg",
+        imgUrl: user?.imageUser || 'defaultAvatar.svg'
       });
-      setNewProfile({
-        name: user.nameUser,
-        email: user.emailUser,
-        phone: user.phoneUser,
-        imgUrl: user?.imageUser || "defaultAvatar.svg",
-      });
+  
+      axios
+        .get(`http://localhost:4000/api/orders?email=${user.emailUser}`)
+        .then(response => setOrders(response.data))
+        .catch(error => console.error('Ошибка при получении заказов:', error));
     }
   }, []);
 
@@ -176,6 +177,7 @@ export default function Profile() {
           </div>
         </div>
       )}
+      <Orders orders={orders}/>
     </>
   );
 }

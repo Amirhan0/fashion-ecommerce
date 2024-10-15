@@ -14,7 +14,7 @@ const ClothingCartComponent = ({ carts, setCarts }) => {
     }, [emailUser]);
 
     useEffect(() => {
-        const newTotalAmount = carts.reduce((total, cart) => total + cart.price * cart.quantity, 0)
+        const newTotalAmount = carts.reduce((total, cart) => total + cart.price * cart.quantity + 500, 0)
         setTotalAmount(newTotalAmount)
         localStorage.setItem('totalAmount', newTotalAmount)
     }, [carts])

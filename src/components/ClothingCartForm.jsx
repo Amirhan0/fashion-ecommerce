@@ -10,12 +10,24 @@ const ClothingCartForm = ({setCarts}) => {
     const [isHomeSelected, setIsHomeSelected] = useState(false);
     const [name, setName] = useState({ firstName: '', lastName: '', middleName: '' });
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [selectedProducts, setSelectedProducts] = useState([]);
+    const [email, setEmail] = useState(''); // добавьте состояние для email
+
     useEffect(() => {
         const products = JSON.parse(localStorage.getItem('selectedProducts')) || [];
         setSelectedProducts(products);
+        
+        // Извлеките данные пользователя только один раз
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            const userObject = JSON.parse(userData);
+            setEmail(userObject.emailUser); // сохраните email в состоянии
+        } else {
+            console.log('Пользователь не найден');
+        }
     }, []);
+
     const handleAddressChange = (e) => {
         const { id, value } = e.target;
         setAddress((prev) => ({ ...prev, [id]: value }));
@@ -28,7 +40,7 @@ const ClothingCartForm = ({setCarts}) => {
 
     const handleSelectHome = () => {
         setIsHomeSelected(true);
-        setAddress((prev) => ({ ...prev, apartment: '' })); 
+        setAddress((prev) => ({ ...prev, apartment: '' }));
     };
 
     const handleSelectApartment = () => {
@@ -43,10 +55,12 @@ const ClothingCartForm = ({setCarts}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        
         const orderData = {
             recipient: {
-                ...name,        
-                phoneNumber, 
+                ...name,
+                phoneNumber,
+                userEmail: email,
             },
             deliveryAddress: {
                 home: address.home,
@@ -57,13 +71,14 @@ const ClothingCartForm = ({setCarts}) => {
             paymentMethod,
             products: selectedProducts,
         };
-    
+
         try {
+            console.log("Email перед отправкой:", email);
             const response = await axios.post('http://localhost:4000/api/orders', orderData);
             toast.success('Заказ успешно оформлен!', { position: 'top-right' });
             console.log(response.data);
             localStorage.removeItem('selectedProducts');
-            setSelectedProducts([]); 
+            setSelectedProducts([]);
             setCarts([]);
         } catch (error) {
             if (error.response) {
@@ -72,7 +87,6 @@ const ClothingCartForm = ({setCarts}) => {
             } else if (error.request) {
                 console.error('Ошибка запроса:', error.request);
                 toast.error('Нет ответа от сервера', { position: 'top-right' });
-
             } else {
                 console.error('Ошибка при настройке запроса:', error.message);
                 toast.error('Ошибка при настройке запроса', { position: 'top-right' });
