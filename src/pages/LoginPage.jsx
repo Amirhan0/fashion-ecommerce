@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/slices/authSlice";
-import { useGoogleLogin } from "@react-oauth/google";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,25 +13,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      try {
-        const googleResponse = await axios.post("http://localhost:4000/api/google-login", {
-          token: tokenResponse.access_token,
-        });
-        const { token, user } = googleResponse.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
-        dispatch(login(user));
-        navigate("/");
-      } catch (error) {
-        setError("Google login failed");
-      }
-    },
-    onError: () => {
-      setError("Google login failed");
-    },
-  });
+
 
   const handleSubmit = async () => {
     try {
@@ -68,17 +49,8 @@ const LoginPage = () => {
       </div>
       <ToastContainer/>
       <div className="flex flex-col justify-center bg-[#10171F] rounded-lg text-white text-[16px] sm:text-[20px] px-5 py-8 sm:py-10 max-w-[90%] sm:max-w-[500px] mx-auto space-y-4 font-arial">
-        <button
-          onClick={googleLogin}
-          className="bg-[#2d333b] border-[#444c56] hover:bg-[#444c56] text-white py-2 px-4 rounded-lg"
-        >
-          Войти через Google
-        </button>
-        <div className="flex items-center space-x-2">
-          <div className="w-full h-[1px] bg-[#444c56]"></div>
-          <span className="text-gray-500 font-arial">Или</span>
-          <div className="w-full h-[1px] bg-[#444c56]"></div>
-        </div>
+      
+        
 
         <div className="relative">
           <input
@@ -135,5 +107,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
 
 export default function HeaderProfile() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user") );
   const name = user?.nameUser || "Guest";
   const avatar = user?.imageUser || "defaultAvatar.svg";
   const navigate = useNavigate();
