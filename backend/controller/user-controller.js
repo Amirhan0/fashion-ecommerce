@@ -75,7 +75,38 @@ const loginUser = async (req,res) => {
         res.status(500).json({message: "Ошибка на сервере"})
     }
 }
+
+
+
+// GET ЗАПРОС ADMIN
+const getUsers = async (req, res) => {
+    try {
+      const users = await Users.find();
+      res.status(200).json(users);
+    } catch (error) {
+      console.error("Ошибка при получении пользователей:", error);
+      res.status(500).json({ message: "Ошибка сервера" });
+    }
+  };
+
+// DELETE USER ADMIN
+const deleteUser = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deletedUser = await Users.findByIdAndDelete(id);
+        if (!deletedUser) {
+            return res.status(404).json({ message: "Пользователь не найден" });
+        }
+        res.json({ message: "Пользователь успешно удален", user: deletedUser });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Ошибка на сервере" });
+    }
+};
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getUsers,
+    deleteUser
 }
