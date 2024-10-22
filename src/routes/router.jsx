@@ -8,6 +8,7 @@ import RegistrPage from "../pages/RegistrPage";
 import ContactPage from "../pages/ContactPage";
 import  Profile  from "../pages/Profile";
 import { ProductDetails } from "../pages/ProductDetails";
+import ClothingDocumentation  from "../pages/ClothingDocumentation";
 function AppRouter() {
     return (
         <Routes>
@@ -20,6 +21,7 @@ function AppRouter() {
         <Route path="/registration" element={<RegistrPage/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/products/:id" element={<ProductDetails/>} />
+        <Route path="/privacy" element={<ClothingDocumentation/>} />
         </Routes>
     )
 }

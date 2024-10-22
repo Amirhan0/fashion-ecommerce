@@ -37,8 +37,9 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center relative translate-y-[-80px]">
-        <h1 className="text-6xl sm:text-9xl text-white font-usuallybold relative z-10 glitchForHeader text-center textShadow">
+    <div className="h-full">
+    <div className="flex flex-col items-center relative translate-y-[-80px]">
+        <h1 className=" text-6xl sm:text-9xl text-white font-usuallybold relative z-10 glitchForHeader text-center textShadow">
           Вход
         </h1>
         <div className="absolute translate-y-[-20px]">
@@ -102,6 +103,8 @@ const LoginPage = () => {
           </p>
         </div>
       </div>
+    </div>
+      
     </>
   );
 };

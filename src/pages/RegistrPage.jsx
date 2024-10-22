@@ -79,7 +79,7 @@ export default function RegistrPage() {
   return (
     <>
       <div className="flex flex-col items-center relative translate-y-[-80px] ">
-        <h1 className="text-9xl text-white font-usuallybold relative z-10 glitchForHeader text-center textShadow">
+        <h1 className="pb-10 text-9xl text-white font-usuallybold relative z-10 glitchForHeader text-center textShadow">
           Регистрация
         </h1>
         <div className="absolute translate-y-[-20px]">
