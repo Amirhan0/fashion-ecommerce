@@ -7,7 +7,7 @@ import { Footer } from "./components/Footer.jsx";
 function App() {
   return (
     <>
-      <div className="bg-custom-gradient h-full px-[176px]">
+      <div className="bg-custom-gradient  px-[176px]">
         <BrowserRouter>
           <HeaderForEveryone />
           <AppRouter />
