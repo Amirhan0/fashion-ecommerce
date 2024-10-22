@@ -49,9 +49,23 @@ const getOrder = async (req, res) => {
     res.status(500).json({ message: 'Ошибка сервера' });
   }
 };
+const deleteOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedOrder = await Order.findByIdAndDelete(id);
+    if (!deletedOrder) {
+      return res.status(404).json({ message: 'Заказ не найден' });
+    }
+    res.json(deletedOrder);
+  } catch (error) {
+    console.error('Ошибка при удалении заказа:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+};
 
 module.exports = {
   createOrder,
   getOrder,
-  validateOrder
+  validateOrder,
+  deleteOrder
 };
