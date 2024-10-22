@@ -1,5 +1,5 @@
 import ClothingForEveryone from "../components/ClothingForEveryone ";
-import { Current } from "../components/current";
+import { Current } from "../components/Current";
 import ForThisSeason from "../components/ForThisSeason";
 import MyGoogleMapForEveryone from "../UI/MyGoogleMapForEveryone";
 
