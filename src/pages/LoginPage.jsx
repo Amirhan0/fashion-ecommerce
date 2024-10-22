@@ -49,9 +49,6 @@ const LoginPage = () => {
       </div>
       <ToastContainer/>
       <div className="flex flex-col justify-center bg-[#10171F] rounded-lg text-white text-[16px] sm:text-[20px] px-5 py-8 sm:py-10 max-w-[90%] sm:max-w-[500px] mx-auto space-y-4 font-arial">
-      
-        
-
         <div className="relative">
           <input
             type="text"

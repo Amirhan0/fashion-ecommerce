@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LogRegBtn from "./LogRegBtn";
 import HeaderProfile from "./HeaderProfile";
-import { logout, loginSuccess } from "../redux/slices/authSlice"; // добавьте действие loginSuccess
+import { logout, loginSuccess } from "../redux/slices/authslice"; 
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Header = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      dispatch(loginSuccess(JSON.parse(storedUser))); // если пользователь найден в localStorage, обновляем состояние
+      dispatch(loginSuccess(JSON.parse(storedUser)));
     }
   }, [dispatch]);
 
