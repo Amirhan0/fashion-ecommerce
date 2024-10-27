@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/slices/authSlice";
+import { login } from "../redux/slices/authslice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -50,9 +50,6 @@ const LoginPage = () => {
       </div>
       <ToastContainer/>
       <div className="flex flex-col justify-center bg-[#10171F] rounded-lg text-white text-[16px] sm:text-[20px] px-5 py-8 sm:py-10 max-w-[90%] sm:max-w-[500px] mx-auto space-y-4 font-arial">
-      
-        
-
         <div className="relative">
           <input
             type="text"

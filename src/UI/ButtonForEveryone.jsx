@@ -1,9 +1,9 @@
 const ButtonForEveryone = ({buttonText, onClick}) => {
     return (
-        <div className="flex justify-end">
+        <div className="flex justify-center">
             <button
             onClick={onClick}
-                className="bg-[#0F151D33] border-2 border-[#D1C12B] text-white rounded-full w-52 h-14 flex items-center justify-center relative transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-[#D1C12B] hover:bg-[#D1C12B] hover:text-black group"
+                className="bg-[#0F151D33] border-2 border-[#D1C12B] text-white rounded-full w-48 h-14 flex items-center justify-center relative transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-[#D1C12B] hover:bg-[#D1C12B] hover:text-black group sm:w-52 sm:h-14"
             >
                 <img 
                     src="/button.svg" 

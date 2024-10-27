@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LogRegBtn from "./LogRegBtn";
 import HeaderProfile from "./HeaderProfile";
-import { logout, loginSuccess } from "../redux/slices/authSlice"; // добавьте действие loginSuccess
+import { logout, loginSuccess } from "../redux/slices/authslice"; 
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Header = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      dispatch(loginSuccess(JSON.parse(storedUser))); // если пользователь найден в localStorage, обновляем состояние
+      dispatch(loginSuccess(JSON.parse(storedUser)));
     }
   }, [dispatch]);
 
@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <div className="pt-10 flex items-center justify-between py-32 px-4 sm:px-10">
       <div className="flex text-[20px] items-center">
-        <img src="/logo.svg" alt="Logo" className="h-[50px]" />
+        <img src="/logo.svg" alt="Logo" className="w-[100px] sm:w-[150px] md:w-[200px] lg:w-[250px] xl:w-[300px] max-w-[80%] min-w-[100px] h-[50px]" />
       </div>
       <div className="sm:hidden">
         <button

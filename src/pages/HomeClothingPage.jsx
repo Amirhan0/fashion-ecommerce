@@ -1,5 +1,5 @@
 import ClothingForEveryone from "../components/ClothingForEveryone ";
-import { Current } from "../components/Сurrent";
+import { Current } from "../components/Current";
 import ForThisSeason from "../components/ForThisSeason";
 import MyGoogleMapForEveryone from "../UI/MyGoogleMapForEveryone";
 
@@ -8,7 +8,7 @@ import MyGoogleMapForEveryone from "../UI/MyGoogleMapForEveryone";
 const HomeClothingPage = () => {
   return (
     <>
-      <div>
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <ClothingForEveryone />
         <ForThisSeason />
         <Current />

@@ -22,38 +22,61 @@
   font-weight: 400;
   font-style: normal;
 }
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Для Chrome, Safari и Opera */
+}
 
-html, body {
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* Для Internet Explorer и Edge */
+  scrollbar-width: none; /* Для Firefox */
+}
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
-
 }
 * {
   font-family: "Uindbase Font 1", sans-serif;
 }
 #root {
   height: 100%; /* Растяжение корневого контейнера */
-  background: linear-gradient(90deg, #0E141C, #0A0F14); /* Фон для страницы */
+  background: linear-gradient(90deg, #0e141c, #0a0f14); /* Фон для страницы */
 }
 .glitchForHeader {
   position: relative;
   color: #ffffff;
-  text-shadow: 
-    5px 0px 0px #A332CA, /* Фиолетовое смещение */
-    -3px 0px 0px #D1C12B, /* Желтое смещение */
-    0 0 10px #D1C12B, /* Внешнее желтое свечение */
-    0 0 0px #A332CA; /* Внешнее фиолетовое свечение */
+  text-shadow: 5px 0px 0px #a332ca,
+    /* Фиолетовое смещение */ -3px 0px 0px #d1c12b,
+    /* Желтое смещение */ 0 0 10px #d1c12b,
+    /* Внешнее желтое свечение */ 0 0 0px #a332ca; /* Внешнее фиолетовое свечение */
   position: relative;
+}
+@media (max-width: 768px) {
+  .glitchForHeader {
+    text-shadow: 3px 0px 0px #a332ca,
+      /* Уменьшение фиолетового смещения */ -2px 0px 0px #d1c12b,
+      /* Уменьшение желтого смещения */ 0 0 8px #d1c12b,
+      /* Уменьшение внешнего желтого свечения */ 0 0 0px #a332ca; /* Уменьшение внешнего фиолетового свечения */
+  }
+}
+
+/* Медиа-запрос для устройств с шириной экрана до 480px */
+@media (max-width: 480px) {
+  .glitchForHeader {
+    text-shadow: 2px 0px 0px #a332ca,
+      /* Минимизация смещения */ -1px 0px 0px #d1c12b,
+      /* Минимизация желтого смещения */ 0 0 5px #d1c12b,
+      /* Минимизация внешнего желтого свечения */ 0 0 0px #a332ca; /* Минимизация внешнего фиолетового свечения */
+  }
 }
 .glitch {
   position: relative;
   color: #ffffff;
-  text-shadow: 
-    2px 0px 0px #A332CA, /* Фиолетовое смещение */
-    -1px 0px 0px #D1C12B, /* Желтое смещение */
-    0 0 10px #D1C12B, /* Внешнее желтое свечение */
-    0 0 0px #A332CA; /* Внешнее фиолетовое свечение */
+  text-shadow: 2px 0px 0px #a332ca,
+    /* Фиолетовое смещение */ -1px 0px 0px #d1c12b,
+    /* Желтое смещение */ 0 0 10px #d1c12b,
+    /* Внешнее желтое свечение */ 0 0 0px #a332ca; /* Внешнее фиолетовое свечение */
   position: relative;
 }
 
@@ -93,12 +116,12 @@ html, body {
 }
 
 .colNavText::before {
-  content: "→"; 
+  content: "→";
   position: absolute;
-  left: -30px; 
+  left: -30px;
   opacity: 0;
   transform: translateX(-20px);
-  color: #ffffff; 
+  color: #ffffff;
   transition: all 0.3s ease;
 }
 

@@ -13,9 +13,9 @@ const MyGoogleMapForEveryone = () => {
   };
 
   return (
-    <div className="flex flex-col mt-16">
+    <div className="flex flex-col mt-36 sm:mt-16">
       <div className="text-center mb-4 relative">
-        <h1 className="leading-none text-[80px] md:text-[120px] lg:text-[180px] text-left noselect text-[#1F252D] font-usuallybold opacity-50">
+        <h1 className="hidden sm:block leading-none text-[80px] md:text-[120px] lg:text-[180px] text-left noselect text-[#1F252D] font-usuallybold opacity-50">
           Контакты
         </h1>
         <h1 className="text-[50px] md:text-[75px] lg:text-[100px] text-white text-left font-uindbase absolute bottom-5 z-10 textShadow">

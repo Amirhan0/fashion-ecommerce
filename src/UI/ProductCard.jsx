@@ -1,6 +1,6 @@
 export function ProductCard({ product }) {
   return (
-    <div className="flex flex-col bg-[#10171F] rounded-lg text-white text-[20px] w-[270px] h-[400px]">
+    <div className="flex flex-col bg-[#10171F] rounded-lg text-white text-[20px] w-[270px] h-[400px] min-w-[270px]">
       <div className="flex-grow overflow-hidden">
         <img
           src={product.image}
