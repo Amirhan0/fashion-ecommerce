@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../redux/slices/authSlice";
+import { login, logout }from "../redux/slices/authSlice";
 
 export default function HeaderProfile() {
   const user = JSON.parse(localStorage.getItem("user") );
