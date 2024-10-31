@@ -84,7 +84,7 @@ const Header = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="sm:hidden absolute top-20 left-0 w-full bg-[#10171F] py-4">
+        <div className="sm:hidden z-30 absolute top-20 left-0 w-full bg-[#10171F] py-4">
           <div className="flex flex-col items-center space-y-4 text-white">
             <span
               onClick={() => {
@@ -130,6 +130,15 @@ const Header = () => {
               className="hover:text-[#D1C12B] cursor-pointer"
             >
               КОРЗИНА
+            </span>
+            <span
+              onClick={() => {
+                navigate("/profile");
+                setIsMobileMenuOpen(false);
+              }}
+              className="hover:text-[#D1C12B] cursor-pointer"
+            >
+              ПРОФИЛЬ
             </span>
           </div>
         </div>

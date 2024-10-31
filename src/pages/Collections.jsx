@@ -68,7 +68,7 @@ export default function Collections() {
         КОЛЛЕКЦИИ
       </h2>
       <div className="flex flex-col md:flex-row justify-center md:justify-start">
-        <div className="md:absolute">
+        <div className="">
           <div className="flex md:flex-col gap-5 mb-8 md:pr-10 sm:pl-24 overflow-x-auto scrollbar-hidden">
             {categories.map((category, index) => (
               <span
@@ -100,7 +100,7 @@ export default function Collections() {
           </div>
         </div>
 
-        <div className="flex w-screen justify-center ">
+        <div className="md:relative flex w-screen justify-center left-[-120px] ">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-5 gap-x-7">
             {filteredProducts.map((product) => (
               <div

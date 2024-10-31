@@ -23,6 +23,7 @@ export default function Profile() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setProfile({
+        id: user._id,
         name: user.nameUser,
         email: user.emailUser,
         phone: user.phoneUser,
@@ -38,7 +39,7 @@ export default function Profile() {
 
   const openModal = () => {
     setIsModalOpen(true);
-    setNewProfile(profile); // Устанавливаем текущее состояние профиля в модальное окно
+    setNewProfile(profile);
   };
 
   const closeModal = () => {
@@ -54,7 +55,9 @@ export default function Profile() {
   const handleSubmit = async () => {
     try {
       // Отправляем обновленные данные профиля на сервер
-      const response = await axios.put("http://localhost:4000/api/items", newProfile);
+      const user = JSON.parse(localStorage.getItem('user'));
+      
+      const response = await axios.put(`http://localhost:4000/api/users/${user._id}`, newProfile);
       
       // Сохраняем обновленные данные профиля в state
       setProfile(newProfile);
@@ -63,6 +66,7 @@ export default function Profile() {
       localStorage.setItem(
         "user",
         JSON.stringify({
+          _id: profile.id, // сохраняем id
           nameUser: newProfile.name,
           emailUser: newProfile.email,
           phoneUser: newProfile.phone,
@@ -77,6 +81,7 @@ export default function Profile() {
       setError("Не удалось сохранить изменения");
     }
   };
+
 
   return (
     <>
@@ -110,8 +115,8 @@ export default function Profile() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
-          <div className="bg-[#10171F] p-6 rounded-lg w-[90%] sm:w-[500px] text-white text-[16px] sm:text-[20px] font-arial space-y-4">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex sm:justify-center items-center">
+          <div className="bg-[#10171F] p-6 rounded-lg  w-screen sm:w-[500px] text-white text-[16px] sm:text-[20px] font-arial space-y-4">
             <h2 className="text-2xl">Изменение профиля</h2>
 
             <div className="space-y-2">

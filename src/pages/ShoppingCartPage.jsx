@@ -5,7 +5,7 @@ const ShoppingCartPage = () => {
     const [carts, setCarts] = useState([]);
     return (
         <>
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
         <ClothingCartComponent carts={carts} setCarts={setCarts}/>
         <ClothingCartForm setCarts={setCarts} />
         </div>

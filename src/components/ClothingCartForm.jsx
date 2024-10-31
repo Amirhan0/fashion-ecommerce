@@ -98,8 +98,8 @@ const ClothingCartForm = ({setCarts}) => {
 
     return (
         <div className="flex flex-col md:flex-row items-start pt-24 md:pt-44 px-4 md:px-0">
-            <div>
-                <hr className="border-l-4 border-[#1F252D] h-[650px]" />
+            <div className='w-full sm:w-0'>
+                <hr className="md:border-l-4 border-b-4 border-[#1F252D]  w-full md:w-0 md:h-[650px]" />
             </div>
             <ToastContainer />
             <div className="ml-0 md:ml-8 mt-8 md:mt-0 w-full md:w-auto">
@@ -183,7 +183,7 @@ const ClothingCartForm = ({setCarts}) => {
                     </div>
                    
                     <div>
-                        <label htmlFor="city" className="block text-lg font-medium text-gray-700">
+                        <label htmlFor="city" className="block text-lg font-medium text-gray-700 font-arial">
                             Данные места доставки
                         </label>
                         <input

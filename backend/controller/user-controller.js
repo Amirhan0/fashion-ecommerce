@@ -64,6 +64,7 @@ const loginUser = async (req,res) => {
             message: 'Вы успешно вошли!',
             token,
             user: {
+                _id: user._id,
                 nameUser: user.nameUser,
                 phoneUser: user.phoneUser,
                 emailUser: user.emailUser,
@@ -104,9 +105,45 @@ const deleteUser = async (req, res) => {
     }
 };
 
+
+// PUT ЗАПРОС ДЛЯ ОБНОВЛЕНИЯ ПРОФИЛЯ ПОЛЬЗОВАТЕЛЯ
+const updateUser = async (req, res) => {
+    console.log("Body:", req.body);
+    console.log("Params:", req.params);
+    const { id } = req.params;
+    const { name: nameUser, phone: phoneUser, email: emailUser, imgUrl: imageUser } = req.body;
+
+    try {
+        const updatedUser = await Users.findByIdAndUpdate(
+            id,
+            { nameUser, phoneUser, emailUser, imageUser },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "Пользователь не найден" });
+        }
+
+        res.json({
+            message: "Профиль успешно обновлен",
+            user: {
+                nameUser: updatedUser.nameUser,
+                phoneUser: updatedUser.phoneUser,
+                emailUser: updatedUser.emailUser,
+                imageUser: updatedUser.imageUser,
+            },
+        });
+    } catch (error) {
+        console.error("Ошибка при обновлении пользователя:", error);
+        res.status(500).json({ message: "Ошибка на сервере" });
+    }
+};
+
+
 module.exports = {
     registerUser,
     loginUser,
     getUsers,
-    deleteUser
+    deleteUser,
+    updateUser
 }
